@@ -1,6 +1,6 @@
 import Poco from "commodetto/Poco";
 
-// inspired of SweWeek from chrobe
+// inspired by SweWeek from chrobe
 
 let render = new Poco(screen);
 
