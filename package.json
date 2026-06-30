@@ -1,0 +1,27 @@
+{
+    "author": "jole84",
+    "dependencies": {},
+    "keywords": [
+        "pebble-app"
+    ],
+    "name": "enkel-svensk-klocka",
+    "pebble": {
+        "displayName": "Enkel Svensk klocka",
+        "enableMultiJS": true,
+        "messageKeys": [],
+        "projectType": "moddable",
+        "resources": {
+            "media": []
+        },
+        "sdkVersion": "3",
+        "targetPlatforms": [
+            "emery",
+            "gabbro"
+        ],
+        "uuid": "f285cd02-5b6e-4d0f-aa99-a74349150188",
+        "watchapp": {
+            "watchface": true
+        }
+    },
+    "version": "1.0.0"
+}
