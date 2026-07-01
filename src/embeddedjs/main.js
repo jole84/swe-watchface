@@ -1,4 +1,5 @@
 import Poco from "commodetto/Poco";
+import Vibes from "pebble/vibes";
 
 // inspired by SweWeek from chrobe
 
@@ -12,6 +13,7 @@ const roboto = new render.Font("Roboto-Bold", 49);
 const robotoCondensed = new render.Font("Roboto-Condensed", 21);
 
 const black = render.makeColor(0, 0, 0);
+const red = render.makeColor(255, 0, 0);
 const white = render.makeColor(255, 255, 255);
 const gray = render.makeColor(128, 128, 128);
 
@@ -81,7 +83,7 @@ function draw() {
   const year = String(currentDate.getFullYear());
   const month = String(currentDate.getMonth() + 1).padStart(2, "0");
   const day = String(currentDate.getDate()).padStart(2, "0")
-  const date = `${year}-${month}-${day}`;
+  const date = `${day} ${month} ${year}`;
   
   const weekday = days[new Date().getDay()];
   const monthName = monthNames[currentDate.getMonth()];
@@ -101,7 +103,20 @@ function draw() {
   drawTextCenter(weekNumber, gothic, white, (render.height - (font.height * 2) - padding));
 	drawTextCenter(date, gothic, white, (render.height - font.height) - padding);
   
+  if (!isConnected) render.drawText("!", font, red, render.width -20, render.height - 40);
+  
 	render.end();
 }
+
+let isConnected = true;
+
+function checkConnection() {
+    isConnected = watch.connected.app;
+    if (!isConnected) Vibes.shortPulse();
+    draw();
+}
+watch.addEventListener("connected", checkConnection);
+checkConnection();
+
 
 watch.addEventListener('minutechange', draw);
